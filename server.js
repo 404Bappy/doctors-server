@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const { response } = require("express");
+
 const app = express();
 app.use(cors());
 var port = process.env.PORT || 4000;
@@ -20,7 +20,7 @@ async function run() {
         await client.connect();
         const serviceCollection = client.db('doctors_portal').collection('services');
 
-        app.get('/service', async (req, res) => {
+        app.get('/services', async (req, res) => {
             const query = {};
             const cursor = serviceCollection.find(query);
             const services = await cursor.toArray();
